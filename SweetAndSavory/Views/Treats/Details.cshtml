@@ -1,0 +1,30 @@
+@{
+  Layout = "_Layout";
+}
+
+@model SweetAndSavory.Models.Treat
+
+<h2 class="text-center">~Treat Details~</h2>
+<hr />
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <td>@Html.DisplayFor(model => model.TreatName)</td>
+  </tbody>
+</table>
+
+<h3>@Html.DisplayFor(model => model.TreatName) is available in these flavors:</h3>
+<ul>
+@foreach(var join in Model.JoinEntities)
+{
+  <li>@join.Flavor.FlavorName</li>
+}
+</ul>
+
+<p class="text-center navMenu">@Html.ActionLink("Edit Treat", "Edit", new { id = Model.TreatId })</p>
+<p class="text-center navMenu">@Html.ActionLink("Delete Treat", "Delete", new { id = Model.TreatId })</p>
+<p class="text-center navMenu">@Html.ActionLink("Add New Treat", "Create", "Treats")</p>

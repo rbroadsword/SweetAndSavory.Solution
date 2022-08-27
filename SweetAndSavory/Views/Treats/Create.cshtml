@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout"; 
+}
+
+@model SweetAndSavory.Models.Treat
+
+<h2 class="text-center"> ~Add a new Treat~ </h2>
+
+<div class="text-center"> 
+  @using (Html.BeginForm())
+  {
+    <div class="fieldset newClient">
+      @Html.LabelFor(model => model.TreatName)
+      @Html.TextBoxFor(model => model.TreatName)
+    </div>
+    <div class="newClient">
+      <input type="submit" value="Add new Treat"/>
+    </div>
+  }
+</div>
+
+<p class="text-center navMenu">@Html.ActionLink("Show all treats", "Index")</p> 
