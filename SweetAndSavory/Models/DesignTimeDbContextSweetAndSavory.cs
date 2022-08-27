@@ -5,10 +5,10 @@ using System.IO;
 
 namespace SweetAndSavory.Models
 {
-  public class SweetAndSavoryContextSweetAndSavory : IDesignTimeDbContextSweetAndSavory<SweetAndSavoryContext>
+  public class SweetAndSavoryContextFactory : IDesignTimeDbContextFactory<SweetAndSavoryContext>
   {
 
-    SweetAndSavoryContext IDesignTimeDbContextSweetAndSavory<SweetAndSavoryContext>.CreateDbContext(string[] args)
+    SweetAndSavoryContext IDesignTimeDbContextFactory<SweetAndSavoryContext>.CreateDbContext(string[] args)
     {
       IConfigurationRoot configuration = new ConfigurationBuilder()
         .SetBasePath(Directory.GetCurrentDirectory())
