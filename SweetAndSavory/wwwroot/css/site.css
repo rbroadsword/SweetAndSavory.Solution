@@ -1,5 +1,24 @@
 ﻿body {
-  min-height: 70vh;
+  min-height: 90vh;
   margin-bottom: 60px;
-  background-color: red;
+  background: rgb(255,255,255);
+  background: radial-gradient(circle, rgb(255, 255, 255) 0%, rgba(255,0,0,1) 100%); 
+}
+
+footer {
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+  color: black; 
+  max-height: 5vh;
+}
+
+#nav {
+  display: flex; 
+}
+
+.myNav {
+  display: flex;
+  flex-direction: row;
 }
