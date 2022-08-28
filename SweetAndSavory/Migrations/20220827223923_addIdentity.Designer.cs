@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SweetAndSavory.Models;
 
 namespace SweetAndSavory.Migrations
 {
     [DbContext(typeof(SweetAndSavoryContext))]
-    partial class SweetAndSavoryContextModelSnapshot : ModelSnapshot
+    [Migration("20220827223923_addIdentity")]
+    partial class addIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -218,12 +220,7 @@ namespace SweetAndSavory.Migrations
                     b.Property<string>("FlavorName")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
                     b.HasKey("FlavorId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Flavors");
                 });
@@ -258,12 +255,7 @@ namespace SweetAndSavory.Migrations
                     b.Property<string>("TreatName")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
                     b.HasKey("TreatId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Treats");
                 });
@@ -319,15 +311,6 @@ namespace SweetAndSavory.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SweetAndSavory.Models.Flavor", b =>
-                {
-                    b.HasOne("SweetAndSavory.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("SweetAndSavory.Models.FlavorTreat", b =>
                 {
                     b.HasOne("SweetAndSavory.Models.Flavor", "Flavor")
@@ -345,15 +328,6 @@ namespace SweetAndSavory.Migrations
                     b.Navigation("Flavor");
 
                     b.Navigation("Treat");
-                });
-
-            modelBuilder.Entity("SweetAndSavory.Models.Treat", b =>
-                {
-                    b.HasOne("SweetAndSavory.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("SweetAndSavory.Models.Flavor", b =>

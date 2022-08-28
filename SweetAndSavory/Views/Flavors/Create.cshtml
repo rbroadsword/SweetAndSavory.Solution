@@ -9,11 +9,14 @@
 <div class="text-center"> 
   @using (Html.BeginForm())
   {
-    <div class="fieldset newClient">
+    <div class="fieldset">
       @Html.LabelFor(model => model.FlavorName)
       @Html.TextBoxFor(model => model.FlavorName)
+
+      @Html.Label("Select Treat")
+      @Html.DropDownList("TreatId")
     </div>
-    <div class="newClient">
+    <div>
       <input type="submit" value="Add new Flavor"/>
     </div>
   }
