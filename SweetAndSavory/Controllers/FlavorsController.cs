@@ -31,6 +31,7 @@ namespace SweetAndSavory.Controllers
         return View(userFlavors);
       }
 
+      [Authorize]
       public  ActionResult Create()
       {
         return View(); 
@@ -52,18 +53,22 @@ namespace SweetAndSavory.Controllers
         return RedirectToAction("Index"); 
       }
 
-      public ActionResult Details(int id)
+      public async Task<ActionResult> Details(int id)
       {
+        var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var currentUser = await _userManager.FindByIdAsync(userId);
         Flavor thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id); 
         return View(thisFlavor); 
       }
 
+      [Authorize]
       public ActionResult Edit(int id)
       {
         var thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id); 
         return View(thisFlavor); 
       }
 
+      [Authorize]
       [HttpPost]
       public ActionResult Edit(Flavor flavor)
       {

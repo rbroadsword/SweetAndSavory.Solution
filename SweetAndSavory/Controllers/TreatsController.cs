@@ -31,6 +31,7 @@ namespace SweetAndSavory.Controllers
         return View(userTreats);
       }
 
+      [Authorize]
       public ActionResult Create()
       {
         ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
@@ -59,13 +60,17 @@ namespace SweetAndSavory.Controllers
         return View(thisTreat);
       }
 
+      [Authorize]
       public ActionResult Edit(int id)
       {
+        var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var currentUser = await _userManager.FindByIdAsync(userId);
         var thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
         ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
         return View(thisTreat);
       }
 
+      [Authorize]
       [HttpPost]
       public ActionResult Edit(Treat treat)
       {
