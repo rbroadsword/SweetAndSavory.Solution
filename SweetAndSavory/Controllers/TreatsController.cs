@@ -63,8 +63,6 @@ namespace SweetAndSavory.Controllers
       [Authorize]
       public ActionResult Edit(int id)
       {
-        var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        var currentUser = await _userManager.FindByIdAsync(userId);
         var thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
         ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
         return View(thisTreat);
